@@ -14,7 +14,7 @@ public class Scores {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer scoreId;
 	 
-	@Column(name="timeStamp")
+	@Column(name="timestamp")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date timeStamp;
 	
