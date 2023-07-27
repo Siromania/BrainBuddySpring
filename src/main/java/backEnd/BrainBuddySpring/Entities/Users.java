@@ -43,7 +43,7 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public boolean isAdmin() {
+	public boolean getAdmin() {
 		return isAdmin;
 	}
 	public void setAdmin(boolean isAdmin) {
