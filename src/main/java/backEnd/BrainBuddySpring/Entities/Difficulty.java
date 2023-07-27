@@ -1,6 +1,6 @@
 package backEnd.BrainBuddySpring.Entities;
 
-import org.hibernate.annotations.Generated;
+
 
 import jakarta.persistence.*;
 
