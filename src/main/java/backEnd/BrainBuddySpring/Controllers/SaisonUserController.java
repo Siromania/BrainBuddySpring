@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import backEnd.BrainBuddySpring.Dtos.SaisonUserDto;
+import backEnd.BrainBuddySpring.Dtos.UsersDto;
 import backEnd.BrainBuddySpring.Entities.SaisonUser;
+import backEnd.BrainBuddySpring.Entities.Users;
 import backEnd.BrainBuddySpring.Services.SaisonUserService;
 
 @RestController
@@ -95,5 +97,7 @@ public class SaisonUserController {
 		if (saisonUser.getPlacement() != null) {
 			saisonUserToUpdate.setPlacement(saisonUser.getPlacement());	
 		}
+		
+		return this.saisonUserService.saveSaisonUser(saisonUserToUpdate);
 	}
 }
