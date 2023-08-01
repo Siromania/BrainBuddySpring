@@ -52,12 +52,12 @@ public class SaisonService {
 
         Saison saisonToUpdate = optionalSaison.get();
 
-        if(saison.getDateDebut() != null) {
+        /*if(saison.getDateDebut() != null) {
             saisonToUpdate.setDateDebut(saison.getDateDebut());
         }
         if(saison.getDateFin() != null) {
             saisonToUpdate.setDateFin(saison.getDateFin());
-        }
+        }*/
         if(saison.getName() != null) {
             saisonToUpdate.setName(saison.getName());
         }
