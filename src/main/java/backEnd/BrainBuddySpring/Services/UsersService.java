@@ -14,8 +14,8 @@ public class UsersService {
     @Autowired
     private UsersRepository userRepo;
     
-    @Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+//    @Autowired
+//	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public Iterable<Users> findAllUsers() {
         return this.userRepo.findAll();
@@ -26,8 +26,8 @@ public class UsersService {
     }
 
     public Users saveUser(Users user) {
-    	String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-    	user.setPassword(encodedPassword);
+//    	String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+//    	user.setPassword(encodedPassword);
         return this.userRepo.save(user);
     }
 
