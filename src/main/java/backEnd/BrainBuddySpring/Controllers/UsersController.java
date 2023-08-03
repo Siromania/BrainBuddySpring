@@ -83,9 +83,7 @@ public class UsersController {
          if(user.getPassword() != null) {
             userToUpdate.setPassword(user.getPassword());
         }
-         if(user.getAdmin() != userToUpdate.getAdmin()) {
-            userToUpdate.setAdmin(user.getAdmin());
-        }
+         
 
         Users updatedUser = this.userService.saveUser(userToUpdate);
         return updatedUser;
