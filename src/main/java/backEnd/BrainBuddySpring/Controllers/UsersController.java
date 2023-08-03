@@ -11,6 +11,7 @@ import backEnd.BrainBuddySpring.Dtos.UsersDto;
 import backEnd.BrainBuddySpring.Entities.Users;
 import backEnd.BrainBuddySpring.Services.UsersService;
 
+
 @RestController
 public class UsersController {
 
@@ -22,7 +23,7 @@ public class UsersController {
 
 
     // --------------- Methode pour recuperer tout les users --------------------
-    @GetMapping("/users")
+    @GetMapping("users")
     public List<UsersDto> getUsers() {
         Iterable<Users> list = this.userService.findAllUsers();
         List<UsersDto> dtoList = new ArrayList<>();
@@ -32,7 +33,7 @@ public class UsersController {
         return dtoList;
     }
     // --------------- Methode pour recuperer un user par id --------------------
-    @GetMapping("/users/{id}")
+    @GetMapping("users/{id}")
     public Users getUser(@PathVariable Integer id) {
 
         Optional<Users> optionalUser = this.userService.findUserById(id);
@@ -44,13 +45,13 @@ public class UsersController {
         return userToReturn;
     }
     // --------------- Methode pour ajouter une donneé --------------------
-    @PostMapping("/users")
+    @PostMapping("users")
     public Users createUser(@RequestBody Users user) {
         return this.userService.saveUser(user);
     }
 
     // --------------- Methode pour delete une donneé --------------------
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("users/{id}")
     public Users deleteUser(@PathVariable Integer id) {
 
         Optional<Users> optionalUser = this.userService.findUserById(id);
@@ -63,7 +64,7 @@ public class UsersController {
         return userToDelete;
     }
     // --------------- Methode pour modifier une donneé --------------------
-    @PutMapping("/users/{id}")
+    @PutMapping("users/{id}")
     public Users updateUser(@PathVariable Integer id, @RequestBody Users user) {
 
         Optional<Users> optionalUser = this.userService.findUserById(id);
@@ -82,9 +83,7 @@ public class UsersController {
          if(user.getPassword() != null) {
             userToUpdate.setPassword(user.getPassword());
         }
-         if(user.getAdmin() != userToUpdate.getAdmin()) {
-            userToUpdate.setAdmin(user.getAdmin());
-        }
+         
 
         Users updatedUser = this.userService.saveUser(userToUpdate);
         return updatedUser;

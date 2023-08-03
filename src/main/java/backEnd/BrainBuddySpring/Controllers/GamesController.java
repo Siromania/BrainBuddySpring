@@ -11,7 +11,7 @@ public class GamesController {
 
     @Autowired
     private GamesService gameServ;
-
+    
     @GetMapping("/games")
     public Iterable<Games> getAllGames() {
         return this.gameServ.getAllGames();
