@@ -1,10 +1,27 @@
 package backEnd.BrainBuddySpring.Entities;
 
-import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name="users")
-public class Users {
+public class Users implements UserDetails {
 	@Id
 	@Column(name="user_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,10 +32,21 @@ public class Users {
 	private String email;
 	@Column
 	private String password;
-	@Column(name="isadmin")
-	private boolean isAdmin;
 	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name="user_role",
+			joinColumns = @JoinColumn(name="user_id"),
+			inverseJoinColumns = @JoinColumn(name="role_id")
+			)
+	private List<Roles> roles;
 	
+	public List<Roles> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Roles> roles) {
+		this.roles = roles;
+	}
 	public Integer getUserId() {
 		return userId;
 	}
@@ -43,11 +71,41 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public boolean getAdmin() {
-		return isAdmin;
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		List<Roles> roles = this.getRoles();
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		for(Roles role: roles) {
+			authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+		}
+		return authorities;
 	}
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return this.userName;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 	
 	
