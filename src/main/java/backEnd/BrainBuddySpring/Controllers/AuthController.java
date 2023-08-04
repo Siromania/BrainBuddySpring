@@ -6,9 +6,13 @@ import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import backEnd.BrainBuddySpring.Dtos.LoginDto;
+import backEnd.BrainBuddySpring.Entities.Users;
 import backEnd.BrainBuddySpring.Services.TokenService;
 
 
@@ -22,9 +26,10 @@ public class AuthController {
     public AuthController(TokenService tokenService) {
         this.tokenService = tokenService;
     }
-
+    
+    @CrossOrigin(origins = "http://localhost:4200",  allowedHeaders = "*")
     @PostMapping("/token")
-    public HashMap<String, String> token(Authentication authentication) {
+    public HashMap<String, String> token(@RequestBody LoginDto authentication) {
         LOG.debug("Token requested for user: '{}'", authentication.toString());
         String token = tokenService.generateToken(authentication);
         LOG.debug("Token granted: {}", token);

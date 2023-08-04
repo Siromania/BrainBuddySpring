@@ -56,7 +56,7 @@ public class SecurityConfig {
 	                        )
 	                .oauth2ResourceServer((oauth2)-> oauth2.jwt(Customizer.withDefaults()))
 	                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Spring Security will never create an HttpSession and it will never use it to obtain the Security Context
-	                .httpBasic(Customizer.withDefaults()) // Spring Security’s HTTP Basic Authentication support is enabled by default, However, as soon as any servlet-based configuration is provided, HTTP Basic must be explicitly provided
+//	                .httpBasic(Customizer.withDefaults()) // Spring Security’s HTTP Basic Authentication support is enabled by default, However, as soon as any servlet-based configuration is provided, HTTP Basic must be explicitly provided
 	                .build();
 	    }
 	 

@@ -11,7 +11,7 @@ import backEnd.BrainBuddySpring.Dtos.UsersDto;
 import backEnd.BrainBuddySpring.Entities.Users;
 import backEnd.BrainBuddySpring.Services.UsersService;
 
-
+@CrossOrigin(origins = "http://localhost:4200",  allowedHeaders = "*")
 @RestController
 public class UsersController {
 
@@ -23,6 +23,7 @@ public class UsersController {
 
 
     // --------------- Methode pour recuperer tout les users --------------------
+   
     @GetMapping("users")
     public List<UsersDto> getUsers() {
         Iterable<Users> list = this.userService.findAllUsers();
@@ -33,6 +34,7 @@ public class UsersController {
         return dtoList;
     }
     // --------------- Methode pour recuperer un user par id --------------------
+    
     @GetMapping("users/{id}")
     public Users getUser(@PathVariable Integer id) {
 
@@ -45,12 +47,14 @@ public class UsersController {
         return userToReturn;
     }
     // --------------- Methode pour ajouter une donneé --------------------
+    
     @PostMapping("users")
     public Users createUser(@RequestBody Users user) {
         return this.userService.saveUser(user);
     }
 
     // --------------- Methode pour delete une donneé --------------------
+    
     @DeleteMapping("users/{id}")
     public Users deleteUser(@PathVariable Integer id) {
 
@@ -64,6 +68,7 @@ public class UsersController {
         return userToDelete;
     }
     // --------------- Methode pour modifier une donneé --------------------
+    
     @PutMapping("users/{id}")
     public Users updateUser(@PathVariable Integer id, @RequestBody Users user) {
 
