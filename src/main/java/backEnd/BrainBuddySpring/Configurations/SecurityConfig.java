@@ -21,7 +21,7 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
+
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.nimbusds.jose.jwk.JWK;

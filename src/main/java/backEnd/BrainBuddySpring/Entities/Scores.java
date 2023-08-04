@@ -33,7 +33,7 @@ public class Scores {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="game_id")
-	private Games games;
+	private Games game;
 
 	public Users getUser() {
 		return user;
@@ -44,11 +44,11 @@ public class Scores {
 	}
 
 	public Games getGames() {
-		return games;
+		return game;
 	}
 
 	public void setGames(Games games) {
-		this.games = games;
+		this.game = games;
 	}
 
 	public Integer getScoreId() {
