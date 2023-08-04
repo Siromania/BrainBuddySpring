@@ -76,7 +76,7 @@ public class SaisonUserController {
 	}
 	
 	// Modifier un SaisonUser
-	@PutMapping("/users/{id}")
+	@PutMapping("/saison-users/{id}")
 	public SaisonUser saisonUser(@PathVariable Integer id, @RequestBody SaisonUser saisonUser) {
 		Optional<SaisonUser> optionalSaisonUser = this.saisonUserService.findSaisonUserById(id);
 		if(!optionalSaisonUser.isPresent()) {

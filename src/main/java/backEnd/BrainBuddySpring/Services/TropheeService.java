@@ -3,10 +3,12 @@ package backEnd.BrainBuddySpring.Services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import backEnd.BrainBuddySpring.Entities.Trophee;
 import backEnd.BrainBuddySpring.Repositories.TropheeRepository;
 
+@Service
 public class TropheeService {
 	@Autowired
 	private TropheeRepository tropheeRepository;

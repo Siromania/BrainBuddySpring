@@ -3,10 +3,12 @@ package backEnd.BrainBuddySpring.Services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import backEnd.BrainBuddySpring.Entities.SaisonUser;
 import backEnd.BrainBuddySpring.Repositories.SaisonUserRepository;
 
+@Service
 public class SaisonUserService {
 	
 	@Autowired
