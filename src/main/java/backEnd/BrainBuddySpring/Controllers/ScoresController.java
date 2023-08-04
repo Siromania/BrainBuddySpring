@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import backEnd.BrainBuddySpring.Entities.Scores;
 import backEnd.BrainBuddySpring.Services.ScoresService;
 
+@CrossOrigin
 @RestController
 public class ScoresController {
     
@@ -23,8 +24,10 @@ public class ScoresController {
         return this.scoreServ.findScoreById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200",  allowedHeaders = "*")
     @PostMapping("/scores")
     public Scores createScores(@RequestBody Scores score) {
+    	System.out.println("je passe dans score");
         return this.scoreServ.saveScore(score);
     }
 
