@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import backEnd.BrainBuddySpring.Entities.SaisonUser;
 import backEnd.BrainBuddySpring.Entities.Scores;
+import backEnd.BrainBuddySpring.Entities.Trophee;
 import backEnd.BrainBuddySpring.Entities.UserTrophee;
 import backEnd.BrainBuddySpring.Entities.Users;
 import backEnd.BrainBuddySpring.Repositories.SaisonUserRepository;
@@ -34,8 +35,8 @@ public class HomeController {
 	@Autowired
 	private SaisonUserRepository saisonRepo;
 	
-	/*@Autowired
-	private UserTropheeRepository userTropheeRepo;*/
+	
+	
 
 	@GetMapping
     public String home(Principal principal) {
@@ -60,16 +61,16 @@ public class HomeController {
 		
 	}
 	
-	/*@GetMapping("usertrophies")
+	@GetMapping("usertrophies")
 	@CrossOrigin(origins = "http://localhost:4200",  allowedHeaders = "*")
-	public List<Trophee> userTrophy(Principal principal) {
+	public List<UserTrophee> userTrophy(Principal principal) {
 		
 		 Users user = this.userRepo.findByUserName(principal.getName()).get();
 		 List<UserTrophee> trophyList = this.userTropheeRepo.findByUser(user);
 		 System.out.println(trophyList);
-		 return this.tropheeRepo.findByUserTrophee(trophyList);
+		 return trophyList;
 		
-	}*/
+	}
 	
 	@DeleteMapping("delete")
 	@CrossOrigin(origins = "http://localhost:4200",  allowedHeaders = "*")
