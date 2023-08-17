@@ -1,4 +1,4 @@
-/*package backEnd.BrainBuddySpring.Repositories;
+package backEnd.BrainBuddySpring.Repositories;
 
 import java.util.List;
 
@@ -10,6 +10,6 @@ import backEnd.BrainBuddySpring.Entities.Users;
 import backEnd.BrainBuddySpring.Keys.UserTropheeKey;
 
 @Repository
-public interface UserTropheeRepository extends CrudRepository<UserTropheeRepository, UserTropheeKey> {
+public interface UserTropheeRepository extends CrudRepository<UserTrophee, Integer> {
   List<UserTrophee> findByUser(Users user);
-}*/
+}
