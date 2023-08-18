@@ -2,22 +2,25 @@ package backEnd.BrainBuddySpring.Controllers;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import backEnd.BrainBuddySpring.Entities.SaisonUser;
 import backEnd.BrainBuddySpring.Entities.Scores;
-import backEnd.BrainBuddySpring.Entities.Trophee;
 import backEnd.BrainBuddySpring.Entities.UserTrophee;
 import backEnd.BrainBuddySpring.Entities.Users;
 import backEnd.BrainBuddySpring.Repositories.SaisonUserRepository;
 import backEnd.BrainBuddySpring.Repositories.ScoresRepository;
-import backEnd.BrainBuddySpring.Repositories.UsersRepository;
 import backEnd.BrainBuddySpring.Repositories.UserTropheeRepository;
+import backEnd.BrainBuddySpring.Repositories.UsersRepository;
+import backEnd.BrainBuddySpring.Services.UsersService;
 
 @CrossOrigin
 @RestController
@@ -34,6 +37,9 @@ public class HomeController {
 	
 	@Autowired
 	private SaisonUserRepository saisonRepo;
+	
+	@Autowired
+	private UsersService userServ;
 	
 	
 	
@@ -95,6 +101,33 @@ public class HomeController {
 		// delete user
 		this.userRepo.delete(this.userRepo.findByUserName(principal.getName()).get());
 		return userToDelete;
+	}
+	
+	@PutMapping("update")
+	public Users updateUser(Principal principal, @RequestBody Users user) {
+		
+		Optional<Users> userToUpdateOptional = this.userRepo.findByUserName(principal.getName());
+        
+		if(!userToUpdateOptional.isPresent()) {
+    
+            return null;
+        }
+
+        Users userToUpdate = userToUpdateOptional .get();
+
+        if(user.getUserName() != null) {
+            userToUpdate.setUserName(user.getUserName());
+        }
+         if(user.getEmail() != null) {
+            userToUpdate.setEmail(user.getEmail());
+        }
+         if(user.getPassword() != null) {
+            userToUpdate.setPassword(user.getPassword());
+        }
+         
+
+        Users updatedUser = this.userServ.saveUser(userToUpdate);
+        return updatedUser;
 	}
 	
 }
