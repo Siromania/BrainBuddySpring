@@ -114,14 +114,26 @@ public class HomeController {
         }
 
         Users userToUpdate = userToUpdateOptional .get();
-
-        if(user.getUserName() != null) {
-            userToUpdate.setUserName(user.getUserName());
+        
+        Boolean userNameExists = false;
+        
+        Iterable<Users> users = this.userServ.findAllUsers();
+        
+        for(Users usr: users) {
+        	if(usr.getUserName().equals(user.getUserName())) {
+        		userNameExists = true;
+        	}
         }
-         if(user.getEmail() != null) {
+
+        if(user.getUserName() != "" && userNameExists == false) {
+            userToUpdate.setUserName(user.getUserName());
+        }else {
+        	System.out.println("Ce nom existe deja");
+        }
+         if(user.getEmail() != "") {
             userToUpdate.setEmail(user.getEmail());
         }
-         if(user.getPassword() != null) {
+         if(user.getPassword() != "") {
             userToUpdate.setPassword(user.getPassword());
         }
          
